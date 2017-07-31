@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
  * DATABASE *
  ************/
 
-/* hard-coded data */
+const db = require ('./models');
 
 /**********
  * ROUTES *
@@ -43,7 +43,9 @@ app.get('/api', function api_index (req, res){
 });
 
 app.get('/api/albums', function album_index(req, res){
-  res.json(albums);
+  db.Album.find({}, function(err, albums) {
+    res.json(albums);
+  });
 });
 
 /**********
