@@ -39,9 +39,14 @@ sampleAlbums.push({
 
 $(document).ready(function() {
   console.log('app.js loaded!');
-  sampleAlbums.forEach(function(sampleAlbum) {
-    renderAlbum(sampleAlbum);
-  });
+  $.get('http://localhost:3000/api/albums')
+    .done(function(data) {
+      console.log("Kanye!!!");
+      let kanyeAlbums = data;
+      kanyeAlbums.forEach(function(kanyeAlbum) {
+      renderAlbum(kanyeAlbum);
+      });
+    });
 });
 
 
