@@ -4,7 +4,7 @@
  * into functions and objects as needed.
  *
  */
-
+var formData = 0;
 
 $(document).ready(function() {
   console.log('app.js loaded!');
@@ -16,7 +16,20 @@ $(document).ready(function() {
         renderAlbum(kanyeAlbum);
       });
     });
+    addAlbum();
 });
+
+function addAlbum() {
+  $('#albumForm').submit(function(){
+    console.log('submit pressed');
+    event.preventDefault();
+    var formData = $(this).serialize();
+    console.log(formData);
+    $(this).trigger('reset');
+    $.post('http://localhost:3000/api/albums', JSON.strinigify(formData)).done(function(data) {
+    });
+  });
+}
 
 
 // this function takes a single album and renders it to the page
